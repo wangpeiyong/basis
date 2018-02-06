@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<viewcache>
+    <areas>
+        <area>
+            <id>1098</id>
+            <parentId>1001</parentId>
+            <areaType>province</areaType>
+            <name>北京</name>
+            <ordering>1867</ordering>
+        </area>
+        <area>
+            <id>1099</id>
+            <parentId>1098</parentId>
+            <areaType>capital</areaType>
+            <name>北京</name>
+            <ordering>1868</ordering>
+            <phoneArea>010</phoneArea>
+        </area>
+        <area>
+            <id>4476</id>
+            <parentId>1099</parentId>
+            <areaType>county</areaType>
+            <name>北京市朝阳区</name>
+            <ordering>1869</ordering>
+            <phoneArea>010</phoneArea>
+        </area>
+        <area>
+            <id>4477</id>
+            <parentId>1099</parentId>
+            <areaType>county</areaType>
+            <name>北京市崇文区</name>
+            <ordering>1870</ordering>
+            <phoneArea>010</phoneArea>
+        </area>
+        <area>
+            <id>4478</id>
+            <parentId>1099</parentId>
+            <areaType>county</areaType>
+            <name>北京市大兴区</name>
+            <ordering>1871</ordering>
+            <phoneArea>010</phoneArea>
+        </area>
+    </areas>
+</viewcache>

@@ -1,0 +1,128 @@
+package org.wpy.digester3;
+
+
+import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.digester3.CallMethodRule;
+import org.apache.commons.digester3.Digester;
+import org.apache.commons.digester3.Rule;
+import org.xml.sax.SAXException;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+/**
+ * 碰到某个标签就开始解析
+ */
+public class XMLParser {
+    public static void main(String[] args) throws IOException, org.xml.sax.SAXException {
+        parserMap();
+    }
+
+    public static void parser1() throws IOException, org.xml.sax.SAXException {
+        Digester digester = new Digester();
+        digester.setValidating(false);
+        digester.addObjectCreate("viewcache/areas", ViewCache.class);
+
+        // 指明匹配模式和要创建的类
+        digester.addObjectCreate("viewcache/areas/area", Area.class.getName(), "sdsdsdsdsd");
+
+        // 设置对象属性,与xml文件对应,不设置则是默认
+        digester.addBeanPropertySetter("viewcache/areas/area/id", "id");
+        digester.addBeanPropertySetter("viewcache/areas/area/parentId", "parentId");
+        digester.addBeanPropertySetter("viewcache/areas/area/name", "name");
+        digester.addBeanPropertySetter("viewcache/areas/area/areaType", "areaType");
+        digester.addBeanPropertySetter("viewcache/areas/area/ordering", "ordering");
+        digester.addBeanPropertySetter("viewcache/areas/area/zip", "zip");
+        digester.addBeanPropertySetter("viewcache/areas/area/phoneArea", "phoneArea");
+
+        // 当移动到下一个标签中时的动作
+        digester.addSetNext("viewcache/areas/area", "addArea", Area.class.getName());
+        ViewCache vc = (ViewCache) digester.parse(new File("F:\\Idea workspace\\java-basic\\src\\resource\\viewcache.xml"));
+        System.out.println(JSONObject.toJSONString(vc));
+    }
+
+
+    public static void parser2() throws IOException, org.xml.sax.SAXException {
+        Digester digester = new Digester();
+        digester.setValidating(false);
+        digester.addObjectCreate("viewcache/areas", ViewCache.class.getName());
+
+        // 指明匹配模式和要创建的类
+        digester.addObjectCreate("viewcache/areas/area", Area.class.getName());
+
+        // 设置对象属性,与xml文件对应,不设置则是默认
+        digester.addBeanPropertySetter("viewcache/areas/area/id", "id");
+        digester.addBeanPropertySetter("viewcache/areas/area/parentId", "parentId");
+        digester.addBeanPropertySetter("viewcache/areas/area/name", "name");
+        digester.addBeanPropertySetter("viewcache/areas/area/areaType", "areaType");
+        digester.addBeanPropertySetter("viewcache/areas/area/ordering", "ordering");
+        digester.addBeanPropertySetter("viewcache/areas/area/zip", "zip");
+        digester.addBeanPropertySetter("viewcache/areas/area/phoneArea", "phoneArea");
+
+        // 当移动到下一个标签中时的动作
+        digester.addSetNext("viewcache/areas/area", "addArea", Area.class.getName());
+        ViewCache vc = (ViewCache) digester.parse(new File("F:\\Idea workspace\\java-basic\\src\\resource\\viewcache.xml"));
+        System.out.println(JSONObject.toJSONString(vc));
+    }
+
+
+    public static void parserMap() throws IOException, SAXException {
+        Digester digester = new Digester();
+        digester.setValidating(false);
+        digester.addObjectCreate("map", HashMap.class);
+
+        //创建一个对象来表示条目并对其进行初始化
+        digester.addObjectCreate("map/entry", StringBuffer.class);
+
+        digester.addCallMethod("map/entry", "append", 1);
+        digester.addCallParam("map/entry", 0);
+        //在蒸煮器堆栈上的第二个到顶部的对象上调用put方法
+        //将key属性传递为第0个参数
+        //和堆栈上的顶部元素作为第1个参数。
+        //
+        //注意，我们不能使用SetNextRule，因为它只能传递一个参数。
+        //还要注意，CallMethodRule的这个变体没有方便
+        //在Digester类上的工厂方法，所以我们需要直接创建它。
+        Rule rule = new CallMethodRule(1, "put", 2);
+        digester.addRule("map/entry", rule);
+        digester.addCallParam("map/entry", 0, "key");
+        digester.addCallParam("map/entry", 1);
+
+        HashMap vc = (HashMap) digester.parse(new File("F:\\Idea workspace\\java-basic\\src\\resource\\map.xml"));
+        System.out.println(JSONObject.toJSONString(vc));
+    }
+
+
+    public static void parserList() throws IOException, SAXException {
+        Digester digester = new Digester();
+        digester.setValidating(false);
+        digester.addObjectCreate("list", ArrayList.class);
+        digester.addCallMethod("list/entry", "add", 1);
+        digester.addCallParam("list/entry", 0);
+        System.out.println(JSONObject.toJSONString(digester.parse(new File("F:\\Idea workspace\\java-basic\\src\\resource\\list.xml"))));
+
+    }
+
+
+    public static void parserList2() throws IOException, SAXException {
+        Digester digester = new Digester();
+        digester.setValidating(false);
+        digester.addObjectCreate("list", ArrayList.class);
+
+        /**
+         * 遇到list/entry，新建一个StringBuffer，并将结果存放到栈区中。
+         */
+        digester.addObjectCreate("list/entry", StringBuffer.class);
+        digester.addCallMethod("list/entry", "append", 1); // 遇到parttern , 方法名 ，参数个数
+        digester.addCallParam("list/entry", 0);                          // 遇到parttern ,  传递给第0个形参
+
+        /**
+         * 执行add方法默认去栈区中拿元素。相加
+         */
+        digester.addSetNext("list/entry", "add");
+        System.out.println(JSONObject.toJSONString(digester.parse(new File("F:\\Idea workspace\\java-basic\\src\\resource\\list.xml"))));
+
+    }
+}

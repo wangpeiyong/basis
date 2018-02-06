@@ -1,0 +1,5 @@
+
+
+#java SPI
+org.wpy.spi.ToLowerCaseBaseService
+org.wpy.spi.ToUpperCaseBaseService
