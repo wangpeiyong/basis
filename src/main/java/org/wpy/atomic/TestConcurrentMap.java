@@ -43,9 +43,9 @@ public class TestConcurrentMap {
          */
         System.out.println(concurrentHashMap.remove(1L));
 
-
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 5; i++) {
             concurrentHashMap.put((long) i, (long) i);
+        }
 
         new Thread(() -> {
             try {

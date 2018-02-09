@@ -13,13 +13,12 @@ public class AtomicElementReferance {
 
     private static ConcurrentHashMap<Integer, User> map = new ConcurrentHashMap<>(5);
 
-
     public static void main(String[] args) throws Exception {
 
         final CyclicBarrier cyclicBarrier = new CyclicBarrier(2);
 
         for (int i = 0; i < 5; i++) {
-            map.put(i, new User("wangsan " + i, i));
+            map.put(i, new User("zhangsan " + i, i));
         }
 
 
