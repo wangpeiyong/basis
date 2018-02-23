@@ -51,7 +51,7 @@ public class TestLambda {
         /**
          * jdk 8 的多种stream表达式
          */
-        String[] array = {"wang", "jun", "tao"};
+        String[] array = {"wang", "pei", "yong"};
         String data1 = Arrays.stream(array).map(String::toUpperCase).collect(Collectors.joining(",", "[", "]"));
         System.out.println(data1);
 

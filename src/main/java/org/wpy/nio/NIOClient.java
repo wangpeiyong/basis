@@ -33,9 +33,9 @@ public class NIOClient {
      */
     public void initClient(String ip, int port) throws IOException {
         // 获得一个Socket通道
-        SocketChannel channel = SocketChannel.open(); // 设置通道为非阻塞
+        SocketChannel channel = SocketChannel.open(); //
 
-        channel.configureBlocking(false); // 获得一个通道管理器
+        channel.configureBlocking(false); // 设置通道为非阻塞
         this.selector = Selector.open(); // 客户端连接服务器,其实方法执行并没有实现连接，需要在listen()方法中调
 
         // 用channel.finishConnect();才能完成连接

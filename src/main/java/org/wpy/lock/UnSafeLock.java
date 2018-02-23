@@ -33,7 +33,7 @@ public class UnSafeLock {
             System.out.println(Thread.currentThread() + "我将被阻塞在这了60s....");
 
             //阻塞60s，单位纳秒  1s = 1000000000
-            LockSupport.parkNanos(1000000000l * 60);
+            LockSupport.parkNanos(1000000000L * 60);
 
             System.out.println(Thread.currentThread() + "我被恢复正常了....");
         }
