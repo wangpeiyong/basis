@@ -23,9 +23,8 @@ public class Mapper {
 
         PersonDto personDTO = new PersonDto("wang", "py", new Date(), new String[][]{{"1", "2"}, {"4", "5"}});
         Person map = mapperFacade.map(personDTO);
-        System.out.println(map.getName());
-
-
+//        System.out.println(map.getName());
+        System.out.println(map);
     }
 
     protected void configure(MapperFactory factory) {
