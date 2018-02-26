@@ -14,6 +14,6 @@ public class DoCGLib {
         SayHello proxyImp = (SayHello) proxy.getProxy(SayHello.class);
 
         proxyImp.say("wpy");
-        proxyImp.sayFinal("Final wpy");
+        proxyImp.sayFinal("Final wpy"); // 定义为final的方法无法代理
     }
 }

@@ -1,0 +1,32 @@
+import mysql.connector #先安装mysql-connector-python-1.0.12-py3.3,再引入包
+import datetime
+import time
+
+#创建链接数据库
+config={'host':'10.99.1.74',#默认127.0.0.1
+        'user':'root',
+        'password':'123456',
+        'port':3306,#默认即为3306
+        'database':'wangpeiyong',
+        'charset':'utf8'#默认即为utf8
+        }
+try:
+    cnn=mysql.connector.connect(**config)#connect方法加载config的配置进行数据库的连接，完成后用一个变量进行接收
+except mysql.connector.Error as e:
+    print(e)
+
+#删除
+cursor = cnn.cursor(buffered = True)
+try:
+    now = datetime.datetime.now()
+    t = datetime.timedelta(days = 1)
+    last_day = (now - t).strftime("%Y-%m-%d") + " 23:59:59"
+
+    cursor.execute('delete from pv_count where create_time < "%s"' %(last_day))
+    cnn.commit()
+    cursor.execute('commit')
+except mysql.connector.Error as e:
+    print('删除数据报错！',str(e))
+finally:
+    cursor.close()#关闭标记位
+    cnn.close()#关闭数据库链接

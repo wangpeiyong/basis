@@ -25,8 +25,8 @@ public class MatcherSql {
         System.out.println(matchSql("select id,name,password from bbb where id = 1 "));
         //INSERT INTO 表名称 VALUES (值1, 值2,....)
         //INSERT INTO table_name (列1, 列2,...) VALUES (值1, 值2,....)
-        System.out.println(matchSql("insert into ccc valuse(1,'neo','password')"));
-        System.out.println(matchSql("insert into ddd (id,name,password) valuses(1,'neo','password')"));
+        System.out.println(matchSql("insert into ccc values(1,'neo','password')"));
+        System.out.println(matchSql("insert into ddd (id,name,password) values(1,'neo','password')"));
         //UPDATE 表名称 SET 列名称 = 新值 WHERE 列名称 = 某值
         System.out.println(matchSql("update eee set name = 'neo' where id = 1 "));
         //DELETE FROM 表名称 WHERE 列名称 = 值

@@ -16,10 +16,10 @@ public class RSASecurity {
         RSASecurity rsAsecurity = new RSASecurity();
 
         System.out.println("私钥加密公钥解密例：");
-        rsAsecurity.priENpubDE("---------------wangjunatao------------");
+        rsAsecurity.priENpubDE("---------------wangpy------------");
 
         System.out.println("公钥加密私钥解密例：");
-        rsAsecurity.pubENpriDE("--------吕华维---------");
+        rsAsecurity.pubENpriDE("--------王培勇---------");
     }
 
     /**

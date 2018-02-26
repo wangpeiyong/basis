@@ -27,7 +27,7 @@ public class NIOServer {
         // 将该通道对于的serverSocket绑定到port端口
         serverChannel.socket().bind(new InetSocketAddress(port));
 
-        // 获得一耳光通道管理器
+        // 获得一个通道管理器
         this.selector = Selector.open();
 
         // 将通道管理器和该通道绑定，并为该通道注册selectionKey.OP_ACCEPT事件

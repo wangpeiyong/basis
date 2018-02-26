@@ -7,7 +7,7 @@ import net.sf.jsqlparser.util.deparser.ExpressionDeParser;
 import net.sf.jsqlparser.util.deparser.SelectDeParser;
 
 /**
- * @Author chenxl
+ * @Author
  * @Date 2016/11/28 13:03
  * @Describle
  */
