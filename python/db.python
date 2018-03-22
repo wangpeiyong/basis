@@ -3,7 +3,7 @@ import datetime
 import time
 
 #创建链接数据库
-config={'host':'10.99.1.74',#默认127.0.0.1
+config={'host':'127.0.0.1',
         'user':'root',
         'password':'123456',
         'port':3306,#默认即为3306
