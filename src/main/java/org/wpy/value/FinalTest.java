@@ -15,7 +15,7 @@ class A {
     private static final String name;
 
     static {
-        name = "wangsan";
+        name = "zhangsan";
     }
 
     private final Integer age;

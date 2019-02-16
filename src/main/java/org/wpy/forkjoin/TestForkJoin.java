@@ -26,7 +26,7 @@ public class TestForkJoin extends RecursiveTask<Integer> {
 
         Future<Integer> future = forkJoinTask.submit(testForkJoin);
 
-        System.out.println(future.get());
+        System.out.println("result:" + future.get());
 
 
     }

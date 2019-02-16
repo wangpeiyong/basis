@@ -19,7 +19,7 @@ import java.security.PrivilegedAction;
  */
 public class JavaCompilerTest {
 
-    public static final String filename = "D:/JavaTest.java";
+    public static final String filename = "/Users/wpy/Documents/java/open-open/basis/JavaTest.java";
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, Exception {
 
@@ -46,8 +46,8 @@ public class JavaCompilerTest {
         compilationTask.call();
         javaFile.close();
 
-        ////把刚才在D:/下生成的class文件JavaTest.class加载进内存并生成实例对象
-        URL[] urls = new URL[]{new URL("file:/d:/")};
+        ////把刚才在生成的class文件JavaTest.class加载进内存并生成实例对象
+        URL[] urls = new URL[]{new URL("file:/Users/wpy/Documents/java/open-open/basis/")};
         URLClassLoader classLoad = new URLClassLoader(urls);
         Class clazz = classLoad.loadClass("JavaTest");
         Method method = clazz.getMethod("main", String[].class);
@@ -67,7 +67,7 @@ public class JavaCompilerTest {
      * @throws IOException
      */
     public static void writeJavaFile() throws IOException {
-        File file = new File("D:/JavaTest.java");
+        File file = new File(filename);
         if (!file.exists()) {
             file.createNewFile();
         }

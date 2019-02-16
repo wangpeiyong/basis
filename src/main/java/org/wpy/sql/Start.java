@@ -25,14 +25,14 @@ public class Start {
 
 
         for (int i = 0; i <10 ; i++) {
-            splitSqls.add("wangsan"+i);
+            splitSqls.add("zhangsan"+i);
         }
 
 
         for (int i = 0; i < splitSqls.size() ;i++){
 
             if (i %2 ==0 && !InvalidSqls.contains(splitSqls.get(i))){
-                InvalidSqls.add("wangsan" + (i+2));
+                InvalidSqls.add("zhangsan" + (i+2));
                 splitSqls.add("lisi"+ i);
             }
         }

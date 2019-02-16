@@ -28,9 +28,7 @@ public class ThreadVisibilityTest {
                 try {
                     cyclicBarrier.await();
                     data.incAge();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (BrokenBarrierException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             });
@@ -53,7 +51,7 @@ public class ThreadVisibilityTest {
             ages.add(age);
         }
         ages.forEach(a -> a.start());
-        Thread.sleep(5000);
+        Thread.sleep(10000);
         System.out.println(data.getAge());
         System.out.println(Common2.num);
     }
@@ -99,7 +97,7 @@ class IncrementAge extends Thread {
     @Override
     public void run() {
         try {
-            //cyclicBarrier.await();
+//            cyclicBarrier.await();
             for (int i = 0; i < 10; i++) {
                 System.out.println(data.incAge());
                 Common2.num += 1;

@@ -180,7 +180,7 @@ public class HttpRequestUtil {
             HttpURLConnection conn = null;
             if (isproxy) {//使用代理模式
                 @SuppressWarnings("static-access")
-                Proxy proxy = new Proxy(Proxy.Type.DIRECT.HTTP, new InetSocketAddress(proxyHost, proxyPort));
+                Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
                 conn = (HttpURLConnection) realUrl.openConnection(proxy);
             } else {
                 conn = (HttpURLConnection) realUrl.openConnection();

@@ -21,21 +21,24 @@ public class Main {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 
-        LoadingCache<Long, AtomicInteger> stringAtomicIntegerLoadingCache = CacheBuilder.newBuilder().expireAfterWrite(100, TimeUnit.SECONDS)
-                .build(new CacheLoader<Long, AtomicInteger>() {
-                    @Override
-                    public AtomicInteger load(Long key) {
-                        return new AtomicInteger(1);
-                    }
-                });
-
-        Random random = new Random();
-        for (int i = 0; i < 1000; i++) {
-            Thread.sleep(random.nextInt(100));
-            stringAtomicIntegerLoadingCache.get(System.currentTimeMillis() / 100).incrementAndGet();
-        }
-        System.out.println("-------------over------------------------");
-        stringAtomicIntegerLoadingCache.asMap().forEach((k, v) -> System.out.println(k + "         " + v));
+//        LoadingCache<Long, AtomicInteger> stringAtomicIntegerLoadingCache = CacheBuilder.newBuilder().expireAfterWrite(100, TimeUnit.SECONDS)
+//                .build(new CacheLoader<Long, AtomicInteger>() {
+//                    @Override
+//                    public AtomicInteger load(Long key) {
+//                        return new AtomicInteger(1);
+//                    }
+//                });
+//
+//        Random random = new Random();
+//        for (int i = 0; i < 1000; i++) {
+//            Thread.sleep(random.nextInt(100));
+//            int ii = stringAtomicIntegerLoadingCache.get(System.currentTimeMillis() / 100).incrementAndGet();
+//            System.out.println(ii);
+//
+//        }
+//        System.out.println("-------------over------------------------");
+//        stringAtomicIntegerLoadingCache.asMap().forEach((k, v) -> System.out.println(k + "         " + v));
+        limitRequestPerSecond();
     }
 
 
@@ -55,9 +58,13 @@ public class Main {
                 });
 
         while (Boolean.TRUE) {
-            if (data.get(System.currentTimeMillis()).getAndIncrement() > 5) {
+//            data.asMap().forEach((k, v) -> System.out.println(k + "         " + v));
+            int i = data.get(System.currentTimeMillis()).incrementAndGet();
+            if (i > 5) {
                 System.err.println("--------------不能得到链接--------------------");
                 break;
+            } else {
+                System.out.println("--------------得到链接--------------------" + i);
             }
         }
     }

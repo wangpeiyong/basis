@@ -30,36 +30,44 @@ import java.util.concurrent.Future;
  * 1、删除entry 失效的threadLocal。
  * 2、threadLocal数组长度 * 2 ,并打开重新拷贝到新数组。设置负载个数。
  */
-public class TestTheadLocal<T> {
+public class TestThreadLocal<T> {
 
     private final ThreadLocal<T> threadLocal = new ThreadLocal<T>();
 
     public static void main(String[] args) {
-        TestTheadLocal<String> testTheadLocal = new TestTheadLocal<String>();
+        TestThreadLocal<String> testThreadLocal = new TestThreadLocal<String>();
 
-        final ThreadLocal<String> threadLocal = testTheadLocal.threadLocal;
+        final ThreadLocal<String> threadLocal = testThreadLocal.threadLocal;
 
         ExecutorService executorService = Executors.newFixedThreadPool(2);
 
         List<Future<String>> submits = new ArrayList<Future<String>>(2);
+        List<Thread> threads = new ArrayList<>();
 
         for (int i = 0; i < 2; i++) {
             submits.add(executorService.submit(() -> {
                 String data = String.valueOf(new Random().nextInt(100));
                 threadLocal.set(data);
-                System.out.println(threadLocal.get());
+                threads.add(Thread.currentThread());
+                System.out.println(Thread.currentThread() + " " + threadLocal.get());
                 return data;
             }));
         }
 
-        submits.stream().forEach((a) -> {
-            try {
-                System.out.println(a.get());
-            } catch (Exception _e) {
-            }
-        });
-        executorService.shutdown();
+//        submits.stream().forEach((a) -> {
+//            try {
+//                System.out.println(Thread.currentThread() + " " + a.get());
+//            } catch (Exception _e) {
+//            }
+//        });
 
+        for (int i = 0; i < 2; i++) {
+            executorService.submit(() -> {
+                System.out.println(Thread.currentThread() + " " + threadLocal.get());
+            });
+        }
+
+        executorService.shutdown();
     }
 
 }

@@ -66,16 +66,16 @@ public class App {
 
 
 
-        /*String str = String.format("name\\s.+=\\s(.+)wangsan\\s(.*)",  "name","=","wangsan");
+        /*String str = String.format("name\\s.+=\\s(.+)zhangsan\\s(.*)",  "name","=","zhangsan");
 
         Pattern p = Pattern.compile(str);
-        Matcher m = p.matcher("name=wangsan");
+        Matcher m = p.matcher("name=zhangsan");
         System.out.println(m.find());
         System.out.println(m.replaceAll("zhhhhhhhhhh "));*/
 
 
         String patter = String.format("\\s%s\\s*" + "%s" + "\\s*\\w+\\s", "name", "=");
-        Matcher matcher = Pattern.compile(patter).matcher("所说的方式  where name = wangsan and nems-sldlf ");
+        Matcher matcher = Pattern.compile(patter).matcher("所说的方式  where name = zhangsan and nems-sldlf ");
         if (matcher.find()) {
             System.out.println(matcher.group());
             System.out.println(matcher.replaceAll(String.format(" %s %s %s ", "name", "=", "lisisisisis")));

@@ -12,7 +12,7 @@ public class BeanFactory {
     private static Properties properties = new Properties();
     static {
         try {
-            InputStream is = new FileInputStream("D:\\workspace\\basis\\src\\resource\\aop.properties");
+            InputStream is = new FileInputStream("/Users/wpy/Documents/java/open-open/basis/src/resource/aop.properties");
             properties.load(is);
         } catch (Exception e) {
             e.printStackTrace();

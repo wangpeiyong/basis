@@ -1,5 +1,6 @@
 package org.wpy.thread;
 
+import java.util.Date;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -11,7 +12,7 @@ import java.util.concurrent.CountDownLatch;
  * @author
  * @create 2017-07-06 上午9:52
  **/
-public class WaiTNotifyExample {
+public class WaitNotifyExample {
 
     public static void main(String[] args) {
 

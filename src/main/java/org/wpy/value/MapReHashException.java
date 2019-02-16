@@ -46,6 +46,11 @@ public class MapReHashException {
             }));
         }
 
+        map.forEach((k, v) -> {
+            map.get(k);
+            System.out.println(k);
+        });
+
         executorService.shutdown();
 
     }

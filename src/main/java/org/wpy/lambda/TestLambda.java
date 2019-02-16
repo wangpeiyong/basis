@@ -14,7 +14,7 @@ import static java.util.stream.Collectors.*;
 public class TestLambda {
 
     public static void main(String[] args) {
-        List<Integer> data = new ArrayList<>(10);
+        List<Integer> data = new ArrayList<>(12);
         for (int i = 0; i < 12; i++)
             data.add(i);
 
@@ -57,7 +57,7 @@ public class TestLambda {
 
         System.out.println(Arrays.stream(array).map(String::toUpperCase).reduce(new StringBuffer(), (a, b) -> a.append(b), (a, b) -> a.append(b)).toString());
 
-        System.out.println(Arrays.stream(array).map(String::toUpperCase).max((a, b) -> a.compareTo(b)).orElseGet(null));
+        System.out.println(Arrays.stream(array).map(String::toUpperCase).max(Comparator.naturalOrder()).orElseGet(null));
 
         int[] nums = {1, 2, 3, 34, 11, 1, 12, 2, 23};
         System.out.println(Arrays.stream(nums).average().orElseGet(null));
