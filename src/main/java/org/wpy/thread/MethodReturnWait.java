@@ -12,6 +12,7 @@ public class MethodReturnWait {
     }
 
     public static String fun() {
+        System.out.println("---------fun start--------");
         return "---------fun start--------";
     }
 }
